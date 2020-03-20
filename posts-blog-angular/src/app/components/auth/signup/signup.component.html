@@ -1,0 +1,74 @@
+<div class="text-center">
+  <h2>Signup</h2>
+  <form #signupForm="ngForm" (ngSubmit)="signup(signupForm)">
+    <input
+      class="form-control"
+      type="text"
+      name="username"
+      placeholder="Username"
+      ngModel
+      #username="ngModel"
+      required
+    />
+    <p class="alert alert-danger" *ngIf="username.touched && username.invalid">
+      Username is required
+    </p>
+    <input
+      class="form-control"
+      type="email"
+      name="email"
+      placeholder="Email"
+      ngModel
+      #email="ngModel"
+      required
+      email
+    />
+    <p
+      class="alert alert-danger"
+      *ngIf="email.touched && email.errors && email.errors.required"
+    >
+      Email is required
+    </p>
+    <p
+      class="alert alert-danger"
+      *ngIf="email.touched && email.errors && email.errors.email"
+    >
+      Email deosn't match a valid format
+    </p>
+    <input
+      class="form-control"
+      type="password"
+      name="password"
+      placeholder="Password"
+      ngModel
+      #password="ngModel"
+      required
+      minlength="6"
+    />
+    <p
+      class="alert alert-danger"
+      *ngIf="password.touched && password.errors && password.errors.required"
+    >
+      Password is required
+    </p>
+    <p
+      class="alert alert-danger"
+      *ngIf="password.touched && password.errors && password.errors.minlength"
+    >
+      Password must be at least 6 characters
+    </p>
+    <input
+      class="btn btn-primary"
+      type="submit"
+      value="Signup"
+      [disabled]="signupForm.invalid || signing"
+    />
+    <br />
+    <br />
+    <p class="alert alert-success" *ngIf="success">
+      Account Created <a routerLink="/login">Login</a>
+    </p>
+    <p class="alert alert-danger" *ngIf="authError">{{ authError }}</p>
+    <p class="alert alert-danger" *ngIf="serverError">{{ serverError }}</p>
+  </form>
+</div>

@@ -1,0 +1,48 @@
+<div class="text-center">
+  <h2>Add Post</h2>
+  <form #addForm="ngForm" (ngSubmit)="add(addForm)">
+    <input
+      class="form-control"
+      type="text"
+      name="title"
+      placeholder="Title"
+      ngModel
+      #title="ngModel"
+      required
+    />
+    <p class="alert alert-danger" *ngIf="title.touched && title.invalid">
+      Title is required
+    </p>
+
+    <textarea
+      class="form-control"
+      name="content"
+      placeholder="Content"
+      ngModel
+      #content="ngModel"
+      required
+    ></textarea>
+    <p class="alert alert-danger" *ngIf="content.touched && content.invalid">
+      Content is required
+    </p>
+
+    <input class="form-control" type="file" (change)="onImageChange($event)" />
+    <p class="alert alert-danger" *ngIf="!image">
+      Image is required
+    </p>
+
+    <input
+      class="btn btn-primary"
+      type="submit"
+      value="Add Post"
+      [disabled]="addForm.invalid || !image || adding"
+    />
+    <br />
+    <br />
+    <p class="alert alert-primary" *ngIf="adding">Posting...</p>
+    <p class="alert alert-success" *ngIf="success">
+      post added, you can view it in your profile
+    </p>
+    <p class="alert alert-danger" *ngIf="error">{{ error }}</p>
+  </form>
+</div>

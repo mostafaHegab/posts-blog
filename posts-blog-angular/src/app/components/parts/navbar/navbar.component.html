@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <div class="container">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li *ngIf="isUser" class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Home</a
+          >
+        </li>
+        <li *ngIf="!isUser" class="nav-item">
+          <a class="nav-link" routerLink="/signup" routerLinkActive="active"
+            >Signup</a
+          >
+        </li>
+        <li *ngIf="!isUser" class="nav-item">
+          <a class="nav-link" routerLink="/login" routerLinkActive="active"
+            >Login</a
+          >
+        </li>
+        <li *ngIf="isUser" class="nav-item">
+          <a class="nav-link" routerLink="/posts/add" routerLinkActive="active"
+            >Add</a
+          >
+        </li>
+        <li *ngIf="isUser" class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/posts"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Profile</a
+          >
+        </li>
+      </ul>
+    </div>
+    <button *ngIf="isUser" class="btn btn-danger" (click)="logout()">
+      Logout
+    </button>
+  </div>
+</nav>

@@ -1,0 +1,19 @@
+<div>
+  <p class="alert alert-primary" *ngIf="gettingPosts">Getting Posts...</p>
+  <p class="alert alert-danger" *ngIf="error">{{ error }}</p>
+  <p class="alert alert-danger" *ngIf="!gettingPosts && !error && posts.length === 0">
+    no posts found
+  </p>
+  <div class="row text-center">
+    <div class="col col-12 col-md-6 col-lg-3" *ngFor="let post of posts">
+      <div>
+        <img [src]="api + post.image" />
+        <h3>
+          <a [routerLink]="['/posts', post._id]">{{
+            post.title | titlecase
+          }}</a>
+        </h3>
+      </div>
+    </div>
+  </div>
+</div>

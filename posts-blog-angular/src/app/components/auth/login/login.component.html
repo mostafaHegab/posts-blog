@@ -1,0 +1,59 @@
+<div class="text-center">
+  <h2>Login</h2>
+  <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+    <input
+      class="form-control"
+      type="email"
+      name="email"
+      placeholder="Email"
+      ngModel
+      #email="ngModel"
+      required
+      email
+    />
+    <p
+      class="alert alert-danger"
+      *ngIf="email.touched && email.errors && email.errors.required"
+    >
+      Email is required
+    </p>
+    <p
+      class="alert alert-danger"
+      *ngIf="email.touched && email.errors && email.errors.email"
+    >
+      Email deosn't match a valid format
+    </p>
+    <input
+      class="form-control"
+      type="password"
+      name="password"
+      placeholder="Password"
+      ngModel
+      #password="ngModel"
+      required
+      minlength="6"
+    />
+    <p
+      class="alert alert-danger"
+      *ngIf="password.touched && password.errors && password.errors.required"
+    >
+      Password is required
+    </p>
+    <p
+      class="alert alert-danger"
+      *ngIf="password.touched && password.errors && password.errors.minlength"
+    >
+      Password must be at least 6 characters
+    </p>
+    <input
+      class="btn btn-primary"
+      type="submit"
+      value="Login"
+      [disabled]="loginForm.invalid || signing"
+    />
+    <br />
+    <br />
+    <p class="alert alert-danger" *ngIf="authError">{{ authError }}</p>
+    <p class="alert alert-danger" *ngIf="serverError">{{ serverError }}</p>
+  </form>
+</div>
