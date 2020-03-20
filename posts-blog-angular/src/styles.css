@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+.form-control {
+  margin: 10px 0;
+}
+
+input.ng-touched.ng-invalid {
+  border: 2px solid rgb(255, 62, 62);
+}
+
+input.ng-touched.ng-invalid:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 62, 62, 0.25);
+}
